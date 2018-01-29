@@ -23,10 +23,15 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -39,16 +44,31 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringDef;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.example.ezequiel.camera2.ActivityInference;
 import com.example.ezequiel.camera2.utils.Utils;
+import com.github.nkzawa.engineio.client.Socket;
 import com.google.android.gms.common.images.Size;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.face.Face;
+import com.google.android.gms.vision.face.FaceDetector;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.Thread.State;
 import java.lang.annotation.Retention;
@@ -165,7 +185,11 @@ public class CameraSource {
     private String mFlashMode = Camera.Parameters.FLASH_MODE_AUTO;
 
     private SurfaceHolder previewSurfaceHolder = null;
+    private TransferUtility mTransferUtility;
+    private com.github.nkzawa.socketio.client.Socket mSocket;
+    private ActivityInference mActivityInference;
 
+    private int isCapturedCount = 0;
     /**
      * Dedicated thread and associated runnable for calling into the detector with frames, as the
      * frames become available from the camera.
@@ -189,24 +213,27 @@ public class CameraSource {
      */
     public static class Builder {
         private boolean usesFaceDetector = false;
-        private final Detector<?> mDetector;
+        private final FaceDetector mDetector;
         private CameraSource mCameraSource = new CameraSource();
 
         /**
          * Creates a camera source builder with the supplied context and detector.  Camera preview
          * images will be streamed to the associated detector upon starting the camera source.
          */
-        public Builder(Context context, Detector<?> detector) {
+        public Builder(Context context, FaceDetector detector, TransferUtility transferUtility, com.github.nkzawa.socketio.client.Socket socket, ActivityInference activityInference) {
             if (context == null) {
                 throw new IllegalArgumentException("No context supplied.");
             }
             if (detector == null) {
                 throw new IllegalArgumentException("No detector supplied.");
             }
-
-            usesFaceDetector = true;
+            mCameraSource.mTransferUtility = transferUtility;
+            mCameraSource.mSocket = socket;
+            mCameraSource.mActivityInference = activityInference;
             mDetector = detector;
+            usesFaceDetector = true;
             mCameraSource.mContext = context;
+
         }
 
         /**
@@ -1143,7 +1170,7 @@ public class CameraSource {
      * received frame will immediately start on the same thread.
      */
     private class FrameProcessingRunnable implements Runnable {
-        private Detector<?> mDetector;
+        private FaceDetector mDetector;
         private long mStartTimeMillis = SystemClock.elapsedRealtime();
 
         // This lock guards all of the member variables below.
@@ -1155,7 +1182,7 @@ public class CameraSource {
         private int mPendingFrameId = 0;
         private ByteBuffer mPendingFrameData;
 
-        FrameProcessingRunnable(Detector<?> detector) {
+        FrameProcessingRunnable(FaceDetector detector) {
             mDetector = detector;
         }
 
@@ -1263,6 +1290,147 @@ public class CameraSource {
                     mPendingFrameData = null;
                 }
 
+                SparseArray<Face> detectedFaces = mDetector.detect(outputFrame);
+                Log.d("tag", "Reading Frame");
+
+                if (detectedFaces.size() > 0) {
+                    Log.d("tag", "detected faces");
+                    if (isCapturedCount < 3) {
+
+                        detectedFaces.valueAt(0).getId();
+
+                        isCapturedCount++;
+                        int w = outputFrame.getMetadata().getWidth();
+                        int h = outputFrame.getMetadata().getHeight();
+//                        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+//
+                        ByteBuffer byteBufferRaw = outputFrame.getGrayscaleImageData();
+                        byte[] byteBuffer = byteBufferRaw.array();
+                        YuvImage yuvimage = new YuvImage(byteBuffer, ImageFormat.NV21, w, h, null);
+
+                        Face face = detectedFaces.valueAt(0);
+                        int left = (int) face.getPosition().x;
+                        int top = (int) face.getPosition().y;
+                        int right = (int) face.getWidth() + left;
+                        int bottom = (int) face.getHeight() + top;
+
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        yuvimage.compressToJpeg(new Rect(0, 0, w, h), 100, baos);
+
+//                        yuvimage.compressToJpeg(new Rect(left, top, right, bottom), 100, baos);
+                        byte[] jpegArray = baos.toByteArray();
+
+//                        Bitmap bitmap = BitmapFactory.decodeByteArray(jpegArray, 0, jpegArray.length);
+
+//                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                        yuvimage.compressToJpeg(new Rect(left, top, right, bottom), 100, baos);
+//                        byte[] jpegArray = baos.toByteArray();
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(jpegArray, 0, jpegArray.length);
+                        int bitmapWidth = bitmap.getWidth();
+                        int bitmapheight = bitmap.getHeight();
+                        int faceWidth = (int) face.getWidth();
+                        int faceHeight = (int) face.getHeight();
+//                        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, left, top, (int) face.getWidth(), (int) face.getHeight());
+                        Matrix matrix = new Matrix();
+
+                        matrix.postRotate(0);
+                        int width;
+                        Bitmap rotatedBitmap;
+                        int offset = 0;
+                        if (face.getHeight() > face.getWidth()) {
+                            width = (int)face.getHeight();
+                            offset = ((int)face.getHeight() - (int)face.getWidth()) / 2;
+                            rotatedBitmap = Bitmap.createBitmap(bitmap, bitmap.getHeight()-top, Math.max(left-offset, 0), (int)face.getHeight(), (int)face.getHeight(), matrix, true);
+                        } else {
+                            width = (int)face.getWidth();
+                            offset = ((int)face.getWidth() - (int)face.getHeight()) / 2;
+                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(top-offset, 0), left, (int)face.getWidth(), (int)face.getWidth(), matrix, true);
+                        }
+
+//                        int width = Math.max((int)face.getHeight(), (int)face.getWidth());
+//                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, top, left, width, width, matrix, true);
+                        Bitmap scaledBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 240, 240, true);
+                        int age  = mActivityInference.getAge(scaledBitmap);
+
+                        long time = System.currentTimeMillis();
+                        String filename = "face_" + time + ".jpg";
+                        File sd = Environment.getExternalStorageDirectory();
+                        File dest = new File(sd, filename);
+
+                        Log.d("log", "got bitmap");
+                        FileOutputStream out = null;
+                        try {
+                            out = new FileOutputStream(dest);
+//                            out.write(jpegArray);
+                            rotatedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+                            // PNG is a lossless format, the compression factor (100) is ignored
+
+
+                            MediaScannerConnection.scanFile(mContext,
+                                    new String[]{dest.toString()}, null,
+                                    new MediaScannerConnection.OnScanCompletedListener() {
+                                        public void onScanCompleted(String path, Uri uri) {
+                                            Log.i("ExternalStorage", "Scanned " + path + ":");
+                                            Log.i("ExternalStorage", "-> uri=" + uri);
+
+
+                                        }
+                                    });
+                            final String url = "faces/" + filename;
+                            TransferObserver observer = mTransferUtility.upload(
+                                    "vision-by-passionate-people",     /* The bucket to upload to */
+                                    url,    /* The key for the uploaded object */
+                                    dest        /* The file where the data to upload exists */
+                            );
+
+                            observer.setTransferListener(new TransferListener() {
+                                //
+                                @Override
+                                public void onStateChanged(int id, TransferState state) {
+                                    if (state.equals(TransferState.COMPLETED)) {
+                                        JSONObject userData = new JSONObject();
+                                        try {
+                                            userData.put("id", "1");
+                                            userData.put("age", "3");
+                                            userData.put("gender", "M");
+                                            userData.put("url", url);
+                                            mSocket.emit("userData", userData);
+                                        } catch (JSONException e) {
+                                            // TODO Auto-generated catch block
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                    // do something
+                                }
+
+                                @Override
+                                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                                    int percentage = (int) (bytesCurrent / bytesTotal * 100);
+                                    Log.d("this is progress", percentage + "");
+                                    //Display percentage transfered to user
+                                }
+
+                                @Override
+                                public void onError(int id, Exception ex) {
+                                    Log.d("test", id + "");
+                                    // do something
+                                }
+
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            try {
+                                if (out != null) {
+                                    out.close();
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
                 // The code below needs to run outside of synchronization, because this will allow
                 // the camera to add pending frame(s) while we are running detection on the current
                 // frame.
