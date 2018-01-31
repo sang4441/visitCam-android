@@ -55,6 +55,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.example.ezequiel.camera2.ActivityInference;
+import com.example.ezequiel.camera2.Customer;
 import com.example.ezequiel.camera2.utils.Utils;
 import com.github.nkzawa.engineio.client.Socket;
 import com.google.android.gms.common.images.Size;
@@ -188,6 +189,8 @@ public class CameraSource {
     private TransferUtility mTransferUtility;
     private com.github.nkzawa.socketio.client.Socket mSocket;
     private ActivityInference mActivityInference;
+    private HashMap<Integer, List<Customer>> customers;
+    private HashMap<Integer, Long> customersTime;
 
     private int isCapturedCount = 0;
     /**
@@ -230,6 +233,8 @@ public class CameraSource {
             mCameraSource.mTransferUtility = transferUtility;
             mCameraSource.mSocket = socket;
             mCameraSource.mActivityInference = activityInference;
+            mCameraSource.customers = new HashMap<>();
+            mCameraSource.customersTime = new HashMap<>();
             mDetector = detector;
             usesFaceDetector = true;
             mCameraSource.mContext = context;
@@ -1295,9 +1300,21 @@ public class CameraSource {
 
                 if (detectedFaces.size() > 0) {
                     Log.d("tag", "detected faces");
+                    long time = System.currentTimeMillis();
+
                     if (isCapturedCount < 3) {
 
                         detectedFaces.valueAt(0).getId();
+                        Face face = detectedFaces.valueAt(0);
+                        int faceId = face.getId();
+                        if (customersTime.containsKey(faceId)) {
+
+                            
+                        } else {
+
+
+                        }
+
 
                         isCapturedCount++;
                         int w = outputFrame.getMetadata().getWidth();
@@ -1308,7 +1325,9 @@ public class CameraSource {
                         byte[] byteBuffer = byteBufferRaw.array();
                         YuvImage yuvimage = new YuvImage(byteBuffer, ImageFormat.NV21, w, h, null);
 
-                        Face face = detectedFaces.valueAt(0);
+
+
+
                         int left = (int) face.getPosition().x;
                         int top = (int) face.getPosition().y;
                         int right = (int) face.getWidth() + left;
@@ -1333,103 +1352,116 @@ public class CameraSource {
 //                        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, left, top, (int) face.getWidth(), (int) face.getHeight());
                         Matrix matrix = new Matrix();
 
-                        matrix.postRotate(0);
-                        int width;
+                        matrix.postRotate(270);
+//                        int width;
                         Bitmap rotatedBitmap;
-                        int offset = 0;
-                        if (face.getHeight() > face.getWidth()) {
-                            width = (int)face.getHeight();
-                            offset = ((int)face.getHeight() - (int)face.getWidth()) / 2;
-                            rotatedBitmap = Bitmap.createBitmap(bitmap, bitmap.getHeight()-top, Math.max(left-offset, 0), (int)face.getHeight(), (int)face.getHeight(), matrix, true);
-                        } else {
-                            width = (int)face.getWidth();
-                            offset = ((int)face.getWidth() - (int)face.getHeight()) / 2;
-                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(top-offset, 0), left, (int)face.getWidth(), (int)face.getWidth(), matrix, true);
-                        }
+//                        int offset = 0;
+                        if (face.getHeight() > face.getWidth() && top > 0 && top < bitmap.getWidth() - face.getHeight()) {
+//                            width = (int)face.getHeight();
+                            int height = (int) face.getHeight();
+                            int width = (int) face.getWidth();
+                            int offset = ((int) face.getHeight() - (int) face.getWidth()) / 2;
+                            if (left - offset > 0) {
 
-//                        int width = Math.max((int)face.getHeight(), (int)face.getWidth());
+                            int y = Math.max(top, 0);
+//                            int y = bitmap.getWidth();
+//                            int x =  Math.max(left-offset, 0);
+
+
+
+
+
+//                            rotatedBitmap = Bitmap.createBitmap(bitmap, y,x, height, width, matrix, true);
+//                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getWidth()-top-height),Math.max(0, bitmap.getHeight()-left-width), height, width, matrix, true);
+
+                                rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getWidth() - height - top), Math.max(0, left - offset), height, height, matrix, true);
+
+//                            int width = Math.max((int)face.getHeight(), (int)face.getWidth());
 //                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, top, left, width, width, matrix, true);
-                        Bitmap scaledBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 240, 240, true);
-                        int age  = mActivityInference.getAge(scaledBitmap);
+                                Bitmap scaledBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 240, 240, true);
+                                int age  = mActivityInference.getAge(scaledBitmap);
 
-                        long time = System.currentTimeMillis();
-                        String filename = "face_" + time + ".jpg";
-                        File sd = Environment.getExternalStorageDirectory();
-                        File dest = new File(sd, filename);
 
-                        Log.d("log", "got bitmap");
-                        FileOutputStream out = null;
-                        try {
-                            out = new FileOutputStream(dest);
+
+                                Log.d("age log", age+"");
+
+                                String filename = "face_" + time + ".jpg";
+                                File sd = Environment.getExternalStorageDirectory();
+                                File dest = new File(sd, filename);
+
+                                Log.d("log", "got bitmap");
+                                FileOutputStream out = null;
+                                try {
+                                    out = new FileOutputStream(dest);
 //                            out.write(jpegArray);
-                            rotatedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
-                            // PNG is a lossless format, the compression factor (100) is ignored
+                                    rotatedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+                                    // PNG is a lossless format, the compression factor (100) is ignored
 
 
-                            MediaScannerConnection.scanFile(mContext,
-                                    new String[]{dest.toString()}, null,
-                                    new MediaScannerConnection.OnScanCompletedListener() {
-                                        public void onScanCompleted(String path, Uri uri) {
-                                            Log.i("ExternalStorage", "Scanned " + path + ":");
-                                            Log.i("ExternalStorage", "-> uri=" + uri);
+                                    MediaScannerConnection.scanFile(mContext,
+                                            new String[]{dest.toString()}, null,
+                                            new MediaScannerConnection.OnScanCompletedListener() {
+                                                public void onScanCompleted(String path, Uri uri) {
+                                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                                    Log.i("ExternalStorage", "-> uri=" + uri);
 
 
+                                                }
+                                            });
+                                    final String url = "faces/" + filename;
+                                    TransferObserver observer = mTransferUtility.upload(
+                                            "vision-by-passionate-people",     /* The bucket to upload to */
+                                            url,    /* The key for the uploaded object */
+                                            dest        /* The file where the data to upload exists */
+                                    );
+
+                                    observer.setTransferListener(new TransferListener() {
+                                        //
+                                        @Override
+                                        public void onStateChanged(int id, TransferState state) {
+                                            if (state.equals(TransferState.COMPLETED)) {
+                                                updateCustomer(faceId ,age, 1, url);
+                                            }
+                                            // do something
                                         }
+
+                                        @Override
+                                        public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                                            int percentage = (int) (bytesCurrent / bytesTotal * 100);
+                                            Log.d("this is progress", percentage + "");
+                                            //Display percentage transfered to user
+                                        }
+
+                                        @Override
+                                        public void onError(int id, Exception ex) {
+                                            Log.d("test", id + "");
+                                            // do something
+                                        }
+
                                     });
-                            final String url = "faces/" + filename;
-                            TransferObserver observer = mTransferUtility.upload(
-                                    "vision-by-passionate-people",     /* The bucket to upload to */
-                                    url,    /* The key for the uploaded object */
-                                    dest        /* The file where the data to upload exists */
-                            );
-
-                            observer.setTransferListener(new TransferListener() {
-                                //
-                                @Override
-                                public void onStateChanged(int id, TransferState state) {
-                                    if (state.equals(TransferState.COMPLETED)) {
-                                        JSONObject userData = new JSONObject();
-                                        try {
-                                            userData.put("id", "1");
-                                            userData.put("age", "3");
-                                            userData.put("gender", "M");
-                                            userData.put("url", url);
-                                            mSocket.emit("userData", userData);
-                                        } catch (JSONException e) {
-                                            // TODO Auto-generated catch block
-                                            e.printStackTrace();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    try {
+                                        if (out != null) {
+                                            out.close();
                                         }
-
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
                                     }
-                                    // do something
                                 }
 
-                                @Override
-                                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-                                    int percentage = (int) (bytesCurrent / bytesTotal * 100);
-                                    Log.d("this is progress", percentage + "");
-                                    //Display percentage transfered to user
-                                }
 
-                                @Override
-                                public void onError(int id, Exception ex) {
-                                    Log.d("test", id + "");
-                                    // do something
-                                }
-
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                if (out != null) {
-                                    out.close();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
                             }
+//
                         }
+//                        else {
+//                            int width = (int)face.getWidth();
+//                            offset = ((int)face.getWidth() - (int)face.getHeight()) / 2;
+//                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(top-offset, 0), left, (int)face.getWidth(), (int)face.getWidth(), matrix, true);
+//                        }
                     }
+//
                 }
                 // The code below needs to run outside of synchronization, because this will allow
                 // the camera to add pending frame(s) while we are running detection on the current
@@ -1443,6 +1475,57 @@ public class CameraSource {
                     mCamera.addCallbackBuffer(data.array());
                 }
             }
+        }
+    }
+
+    private void updateCustomer(int faceId, int age, int gender, String url) {
+        Customer customer = new Customer(age, 1, url);
+        if(customers.containsKey(faceId)) {
+            List<Customer> customerList = customers.get(faceId);
+
+            if (customerList.size() == 5) {
+                List<String> urls = new ArrayList<>();
+                int ageAverage = 0;
+                int genderAverage = 0;
+                for (Customer customer1 : customerList) {
+                    ageAverage += customer1.getAge();
+                    genderAverage += customer1.getGender();
+                    urls.add(customer1.getUrl());
+                }
+
+                ageAverage /= 5;
+                genderAverage /= 5;
+                customers.remove(faceId);
+                sendCustomerToServer(ageAverage, genderAverage,  urls);
+
+            } else {
+
+                customerList.add(customer);
+                customers.put(faceId, customerList);
+
+
+            }
+
+
+        } else {
+            List<Customer> customerList = new ArrayList<>();
+            customerList.add(customer);
+            customers.put(faceId, customerList);
+        }
+//                                customers.put(faceId)
+    }
+
+    private void sendCustomerToServer(int age, int gender, List<String> url) {
+        JSONObject userData = new JSONObject();
+        try {
+            userData.put("id", time);
+            userData.put("age", age);
+            userData.put("gender", 1);
+            userData.put("url", url);
+            mSocket.emit("userData", userData);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
