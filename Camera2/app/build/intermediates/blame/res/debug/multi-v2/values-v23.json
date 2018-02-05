@@ -4,7 +4,26 @@
             "outputFile": "/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/res/values-v23/values-v23.xml",
+                    "source": "/Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.0.2.aar/739426fb35ee1cf8cde9dec40552264c/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "2646",
+                        "endLines": "39",
+                        "endColumns": "12",
+                        "endOffsets": "2791"
+                    }
+                },
+                {
+                    "source": "/Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/878a1198f0371f071ace7e8c24ae720b/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,19,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",

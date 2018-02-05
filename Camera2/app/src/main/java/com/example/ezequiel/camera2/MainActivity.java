@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private Button videoButton;
 
     // DEFAULT CAMERA BEING OPENED
-    private boolean usingFrontCamera = true;
+    private boolean usingFrontCamera = false;
 
     // MUST BE CAREFUL USING THIS VARIABLE.
     // ANY ATTEMPT TO START CAMERA2 ON API < 21 WILL CRASH.
@@ -359,7 +359,8 @@ public class MainActivity extends AppCompatActivity {
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 useCamera2 = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
                 useCamera2 = false;
-                createCameraSourceFront();
+//                createCameraSourceFront();
+                createCameraSourceBack();
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_STORAGE_PERMISSION);
             }
@@ -396,7 +397,10 @@ public class MainActivity extends AppCompatActivity {
                 startCameraSource();
             } else {
                 useCamera2 = false;
-                if(usingFrontCamera) createCameraSourceFront(); else createCameraSourceBack();
+                if(usingFrontCamera)
+                    createCameraSourceFront();
+                else
+                    createCameraSourceBack();
             }
         } else {
             mCameraSource = new CameraSource.Builder(context, previewFaceDetector, transferUtility, mSocket, activityInference)

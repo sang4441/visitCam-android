@@ -4,4 +4,7 @@
     <string name="switch_camera">SWITCH</string>
     <string name="record_video">VIDEO</string>
     <string name="stop_video">STOP</string>
+
+    <string name="facebook_app_id">1722846564404732</string>
+    <string name="fb_login_protocol_scheme">fb1722846564404732</string>
 </resources>

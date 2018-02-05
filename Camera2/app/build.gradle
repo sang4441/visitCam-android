@@ -42,4 +42,6 @@ dependencies {
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
     //    compile files('src/main/jniLibs/libandroid_tensorflow_inference_java.jar')
     compile files('src/main/libs/libandroid_tensorflow_inference_java.jar')
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+
 }

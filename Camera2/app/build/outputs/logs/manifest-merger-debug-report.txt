@@ -4,20 +4,26 @@ ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/mai
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:2:1-31:12
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:2:1-31:12
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:2:1-31:12
-MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:17:1-31:12
+MERGED from [com.facebook.android:facebook-login:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-login-4.30.0.aar/c9c1c486276ef9ee6812064791bc8a49/AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:21:1-36:12
+MERGED from [com.android.support:appcompat-v7:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/878a1198f0371f071ace7e8c24ae720b/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-vision:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-vision-9.4.0.aar/00eeb6ff8b0d648dd988955fdabf114b/AndroidManifest.xml:2:1-6:12
 MERGED from [com.android.support:multidex:1.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/337d509e5a94fb7e0321cec4084215f2/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.0.aar/20f064c941a525dbe5e7fffe2d59fe52/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.0.aar/5e01494874420e3489c7854a6e189fcf/AndroidManifest.xml:17:1-28:12
+MERGED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:21:1-45:12
 MERGED from [com.google.android.gms:play-services-base:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-base-9.4.0.aar/c08cbf2d8e482609ba7f0915641f647f/AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-tasks-9.4.0.aar/c63a736c0bb1218b04f8fef8fd612779/AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.4.0.aar/e9caf00eb479e83bde5291ec66c6f262/AndroidManifest.xml:16:1-26:12
-MERGED from [com.android.support:support-v4:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.0.aar/41aab57ec6b4a6282ff4f87397eb5301/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-fragment:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.0.aar/644bedfda293cf5c88b1e07f1a2daec1/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-media-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.0.aar/8aede700b34cbe2853d947bc84a59876/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-utils:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.0.aar/8303fbcb66cb4e825010c72b8c15824f/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-ui:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.0.aar/e5a00bc2e153e6524623d5b0066f1af4/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.0.aar/c09c1c3933c18974b4106ed2516a887b/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-v4:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-27.0.2.aar/3d1fecd9f631ad38c09672023624bcd5/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-27.0.2.aar/147516d1f5b1127ac9615eeb070f37de/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.0.2.aar/fed714495dbf1349d9a9303e6e024b66/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.0.2.aar/739426fb35ee1cf8cde9dec40552264c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customtabs:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/customtabs-27.0.2.aar/b44c94595454949f337ccf3f378dead9/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.0.2.aar/410cbabe078b3d5ef71f33a386f13f1c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.0.2.aar/fecd638242d874249719d6e1f93fd3d0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.2.aar/7fda6d9c145644205b5df42014d5a0bc/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.0.2.aar/880f6e6e71fd905ae69b6a7983265dd0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/62313bdaa6ea939ade20e14fc165442c/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.0.3] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/runtime-1.0.3.aar/e1ffe3cc777d4672d7f861ef63cb8973/AndroidManifest.xml:17:1-24:12
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:2:1-31:12
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:2:1-31:12
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:2:1-31:12
@@ -69,32 +75,20 @@ ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/mai
 		ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:9:22-76
 application
 ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:11:5-30:19
-MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:29:5-20
+MERGED from [com.facebook.android:facebook-login:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-login-4.30.0.aar/c9c1c486276ef9ee6812064791bc8a49/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-login:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-login-4.30.0.aar/c9c1c486276ef9ee6812064791bc8a49/AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:28:5-34:19
+MERGED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:28:5-34:19
 MERGED from [com.google.android.gms:play-services-vision:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-vision-9.4.0.aar/00eeb6ff8b0d648dd988955fdabf114b/AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-vision:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-vision-9.4.0.aar/00eeb6ff8b0d648dd988955fdabf114b/AndroidManifest.xml:5:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.0.aar/20f064c941a525dbe5e7fffe2d59fe52/AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.0.aar/20f064c941a525dbe5e7fffe2d59fe52/AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.0.aar/5e01494874420e3489c7854a6e189fcf/AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.0.aar/5e01494874420e3489c7854a6e189fcf/AndroidManifest.xml:26:5-20
+MERGED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:28:5-43:19
+MERGED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:28:5-43:19
 MERGED from [com.google.android.gms:play-services-base:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-base-9.4.0.aar/c08cbf2d8e482609ba7f0915641f647f/AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-base:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-base-9.4.0.aar/c08cbf2d8e482609ba7f0915641f647f/AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-tasks:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-tasks-9.4.0.aar/c63a736c0bb1218b04f8fef8fd612779/AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-tasks:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-tasks-9.4.0.aar/c63a736c0bb1218b04f8fef8fd612779/AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.4.0.aar/e9caf00eb479e83bde5291ec66c6f262/AndroidManifest.xml:20:5-24:19
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.4.0.aar/e9caf00eb479e83bde5291ec66c6f262/AndroidManifest.xml:20:5-24:19
-MERGED from [com.android.support:support-v4:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.0.aar/41aab57ec6b4a6282ff4f87397eb5301/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-v4:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.0.aar/41aab57ec6b4a6282ff4f87397eb5301/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-fragment:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.0.aar/644bedfda293cf5c88b1e07f1a2daec1/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-fragment:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.0.aar/644bedfda293cf5c88b1e07f1a2daec1/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-media-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.0.aar/8aede700b34cbe2853d947bc84a59876/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-media-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.0.aar/8aede700b34cbe2853d947bc84a59876/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-utils:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.0.aar/8303fbcb66cb4e825010c72b8c15824f/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-utils:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.0.aar/8303fbcb66cb4e825010c72b8c15824f/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-ui:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.0.aar/e5a00bc2e153e6524623d5b0066f1af4/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-ui:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.0.aar/e5a00bc2e153e6524623d5b0066f1af4/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.0.aar/c09c1c3933c18974b4106ed2516a887b/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.0.aar/c09c1c3933c18974b4106ed2516a887b/AndroidManifest.xml:29:5-20
 	android:supportsRtl
 		ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:15:9-35
 	android:label
@@ -114,7 +108,7 @@ ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/mai
 activity#com.example.ezequiel.camera2.MainActivity
 ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:23:9-29:20
 	android:screenOrientation
-		ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:24:13-49
+		ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:24:13-51
 	android:name
 		ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml:23:19-75
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
@@ -131,38 +125,48 @@ uses-sdk
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
-MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:21:5-23:78
+MERGED from [com.facebook.android:facebook-login:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-login-4.30.0.aar/c9c1c486276ef9ee6812064791bc8a49/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-login:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-login-4.30.0.aar/c9c1c486276ef9ee6812064791bc8a49/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:appcompat-v7:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/878a1198f0371f071ace7e8c24ae720b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/878a1198f0371f071ace7e8c24ae720b/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-vision:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-vision-9.4.0.aar/00eeb6ff8b0d648dd988955fdabf114b/AndroidManifest.xml:4:5-42
 MERGED from [com.google.android.gms:play-services-vision:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-vision-9.4.0.aar/00eeb6ff8b0d648dd988955fdabf114b/AndroidManifest.xml:4:5-42
 MERGED from [com.android.support:multidex:1.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/337d509e5a94fb7e0321cec4084215f2/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:multidex:1.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/337d509e5a94fb7e0321cec4084215f2/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.0.aar/20f064c941a525dbe5e7fffe2d59fe52/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.0.aar/20f064c941a525dbe5e7fffe2d59fe52/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.0.aar/5e01494874420e3489c7854a6e189fcf/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.0.aar/5e01494874420e3489c7854a6e189fcf/AndroidManifest.xml:20:5-43
+MERGED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:24:5-26:41
 MERGED from [com.google.android.gms:play-services-base:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-base-9.4.0.aar/c08cbf2d8e482609ba7f0915641f647f/AndroidManifest.xml:18:5-42
 MERGED from [com.google.android.gms:play-services-base:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-base-9.4.0.aar/c08cbf2d8e482609ba7f0915641f647f/AndroidManifest.xml:18:5-42
 MERGED from [com.google.android.gms:play-services-tasks:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-tasks-9.4.0.aar/c63a736c0bb1218b04f8fef8fd612779/AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-tasks:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-tasks-9.4.0.aar/c63a736c0bb1218b04f8fef8fd612779/AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.4.0.aar/e9caf00eb479e83bde5291ec66c6f262/AndroidManifest.xml:18:5-42
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-basement-9.4.0.aar/e9caf00eb479e83bde5291ec66c6f262/AndroidManifest.xml:18:5-42
-MERGED from [com.android.support:support-v4:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.0.aar/41aab57ec6b4a6282ff4f87397eb5301/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-v4:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.0.aar/41aab57ec6b4a6282ff4f87397eb5301/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.0.aar/644bedfda293cf5c88b1e07f1a2daec1/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-fragment:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.0.aar/644bedfda293cf5c88b1e07f1a2daec1/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.0.aar/8aede700b34cbe2853d947bc84a59876/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-media-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.0.aar/8aede700b34cbe2853d947bc84a59876/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-utils:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.0.aar/8303fbcb66cb4e825010c72b8c15824f/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-utils:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.0.aar/8303fbcb66cb4e825010c72b8c15824f/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-ui:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.0.aar/e5a00bc2e153e6524623d5b0066f1af4/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-ui:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.0.aar/e5a00bc2e153e6524623d5b0066f1af4/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.0.aar/c09c1c3933c18974b4106ed2516a887b/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.0.aar/c09c1c3933c18974b4106ed2516a887b/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-v4:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-27.0.2.aar/3d1fecd9f631ad38c09672023624bcd5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-27.0.2.aar/3d1fecd9f631ad38c09672023624bcd5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-27.0.2.aar/147516d1f5b1127ac9615eeb070f37de/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-27.0.2.aar/147516d1f5b1127ac9615eeb070f37de/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.0.2.aar/fed714495dbf1349d9a9303e6e024b66/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.0.2.aar/fed714495dbf1349d9a9303e6e024b66/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.0.2.aar/739426fb35ee1cf8cde9dec40552264c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.0.2.aar/739426fb35ee1cf8cde9dec40552264c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customtabs:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/customtabs-27.0.2.aar/b44c94595454949f337ccf3f378dead9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customtabs:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/customtabs-27.0.2.aar/b44c94595454949f337ccf3f378dead9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.0.2.aar/410cbabe078b3d5ef71f33a386f13f1c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.0.2.aar/410cbabe078b3d5ef71f33a386f13f1c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.0.2.aar/fecd638242d874249719d6e1f93fd3d0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.0.2.aar/fecd638242d874249719d6e1f93fd3d0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.2.aar/7fda6d9c145644205b5df42014d5a0bc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.2.aar/7fda6d9c145644205b5df42014d5a0bc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.0.2.aar/880f6e6e71fd905ae69b6a7983265dd0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.0.2.aar/880f6e6e71fd905ae69b6a7983265dd0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/62313bdaa6ea939ade20e14fc165442c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/62313bdaa6ea939ade20e14fc165442c/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.0.3] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/runtime-1.0.3.aar/e1ffe3cc777d4672d7f861ef63cb8973/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.3] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/runtime-1.0.3.aar/e1ffe3cc777d4672d7f861ef63cb8973/AndroidManifest.xml:20:5-22:41
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
 INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
-	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
 		INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
 		ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
@@ -171,28 +175,26 @@ INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/
 		INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
 		ADDED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/src/main/AndroidManifest.xml
-meta-data#android.support.VERSION
-ADDED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.0.aar/20f064c941a525dbe5e7fffe2d59fe52/AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.0.aar/20f064c941a525dbe5e7fffe2d59fe52/AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.0.aar/5e01494874420e3489c7854a6e189fcf/AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.0.aar/5e01494874420e3489c7854a6e189fcf/AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-v4:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.0.aar/41aab57ec6b4a6282ff4f87397eb5301/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-v4:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.0.aar/41aab57ec6b4a6282ff4f87397eb5301/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-fragment:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.0.aar/644bedfda293cf5c88b1e07f1a2daec1/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-fragment:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.0.aar/644bedfda293cf5c88b1e07f1a2daec1/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-media-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.0.aar/8aede700b34cbe2853d947bc84a59876/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-media-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.0.aar/8aede700b34cbe2853d947bc84a59876/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-utils:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.0.aar/8303fbcb66cb4e825010c72b8c15824f/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-utils:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.0.aar/8303fbcb66cb4e825010c72b8c15824f/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-ui:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.0.aar/e5a00bc2e153e6524623d5b0066f1af4/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-ui:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.0.aar/e5a00bc2e153e6524623d5b0066f1af4/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.0.aar/c09c1c3933c18974b4106ed2516a887b/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-compat:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.0.aar/c09c1c3933c18974b4106ed2516a887b/AndroidManifest.xml:25:5-27:34
-	android:value
-		ADDED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:27:9-31
+activity#com.facebook.FacebookActivity
+ADDED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:29:9-32:66
+	android:configChanges
+		ADDED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:31:13-96
+	android:theme
+		ADDED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:32:13-63
 	android:name
-		ADDED from [com.android.support:appcompat-v7:25.3.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.0.aar/891056dcb0f7b42dd13df2382c01a4d1/AndroidManifest.xml:26:9-47
+		ADDED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:30:13-57
+activity#com.facebook.CustomTabMainActivity
+ADDED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:33:9-71
+	android:name
+		ADDED from [com.facebook.android:facebook-common:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-common-4.30.0.aar/10e04a5d343028f9b33673f3df94d8bf/AndroidManifest.xml:33:19-68
+provider#com.facebook.internal.FacebookInitProvider
+ADDED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:39:9-42:40
+	android:authorities
+		ADDED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:41:13-72
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:42:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:4.30.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/facebook-core-4.30.0.aar/0dd5245a230f5a0bcf139b485c2bcf1f/AndroidManifest.xml:40:13-70
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:9.4.0] /Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/play-services-base-9.4.0.aar/c08cbf2d8e482609ba7f0915641f647f/AndroidManifest.xml:20:9-22:45
 	android:exported

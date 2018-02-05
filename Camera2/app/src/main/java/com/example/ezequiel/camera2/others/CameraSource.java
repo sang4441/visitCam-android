@@ -64,6 +64,7 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -1302,165 +1303,34 @@ public class CameraSource {
                     Log.d("tag", "detected faces");
                     long time = System.currentTimeMillis();
 
-                    if (isCapturedCount < 3) {
+//                    if (isCapturedCount < 3) {
 
                         detectedFaces.valueAt(0).getId();
                         Face face = detectedFaces.valueAt(0);
                         int faceId = face.getId();
                         if (customersTime.containsKey(faceId)) {
 
-                            
+                            if (time - customersTime.get(faceId) > 500) {
+                                customersTime.put(faceId, time);
+                                getFaceInfo(face, outputFrame, time);
+                            }
+
                         } else {
 
+                            customersTime.put(faceId, time);
+                            getFaceInfo(face, outputFrame, time);
 
                         }
 
 
-                        isCapturedCount++;
-                        int w = outputFrame.getMetadata().getWidth();
-                        int h = outputFrame.getMetadata().getHeight();
-//                        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-//
-                        ByteBuffer byteBufferRaw = outputFrame.getGrayscaleImageData();
-                        byte[] byteBuffer = byteBufferRaw.array();
-                        YuvImage yuvimage = new YuvImage(byteBuffer, ImageFormat.NV21, w, h, null);
+//                        isCapturedCount++;
 
-
-
-
-                        int left = (int) face.getPosition().x;
-                        int top = (int) face.getPosition().y;
-                        int right = (int) face.getWidth() + left;
-                        int bottom = (int) face.getHeight() + top;
-
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        yuvimage.compressToJpeg(new Rect(0, 0, w, h), 100, baos);
-
-//                        yuvimage.compressToJpeg(new Rect(left, top, right, bottom), 100, baos);
-                        byte[] jpegArray = baos.toByteArray();
-
-//                        Bitmap bitmap = BitmapFactory.decodeByteArray(jpegArray, 0, jpegArray.length);
-
-//                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                        yuvimage.compressToJpeg(new Rect(left, top, right, bottom), 100, baos);
-//                        byte[] jpegArray = baos.toByteArray();
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(jpegArray, 0, jpegArray.length);
-                        int bitmapWidth = bitmap.getWidth();
-                        int bitmapheight = bitmap.getHeight();
-                        int faceWidth = (int) face.getWidth();
-                        int faceHeight = (int) face.getHeight();
-//                        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, left, top, (int) face.getWidth(), (int) face.getHeight());
-                        Matrix matrix = new Matrix();
-
-                        matrix.postRotate(270);
-//                        int width;
-                        Bitmap rotatedBitmap;
-//                        int offset = 0;
-                        if (face.getHeight() > face.getWidth() && top > 0 && top < bitmap.getWidth() - face.getHeight()) {
-//                            width = (int)face.getHeight();
-                            int height = (int) face.getHeight();
-                            int width = (int) face.getWidth();
-                            int offset = ((int) face.getHeight() - (int) face.getWidth()) / 2;
-                            if (left - offset > 0) {
-
-                            int y = Math.max(top, 0);
-//                            int y = bitmap.getWidth();
-//                            int x =  Math.max(left-offset, 0);
-
-
-
-
-
-//                            rotatedBitmap = Bitmap.createBitmap(bitmap, y,x, height, width, matrix, true);
-//                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getWidth()-top-height),Math.max(0, bitmap.getHeight()-left-width), height, width, matrix, true);
-
-                                rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getWidth() - height - top), Math.max(0, left - offset), height, height, matrix, true);
-
-//                            int width = Math.max((int)face.getHeight(), (int)face.getWidth());
-//                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, top, left, width, width, matrix, true);
-                                Bitmap scaledBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 240, 240, true);
-                                int age  = mActivityInference.getAge(scaledBitmap);
-
-
-
-                                Log.d("age log", age+"");
-
-                                String filename = "face_" + time + ".jpg";
-                                File sd = Environment.getExternalStorageDirectory();
-                                File dest = new File(sd, filename);
-
-                                Log.d("log", "got bitmap");
-                                FileOutputStream out = null;
-                                try {
-                                    out = new FileOutputStream(dest);
-//                            out.write(jpegArray);
-                                    rotatedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
-                                    // PNG is a lossless format, the compression factor (100) is ignored
-
-
-                                    MediaScannerConnection.scanFile(mContext,
-                                            new String[]{dest.toString()}, null,
-                                            new MediaScannerConnection.OnScanCompletedListener() {
-                                                public void onScanCompleted(String path, Uri uri) {
-                                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                                    Log.i("ExternalStorage", "-> uri=" + uri);
-
-
-                                                }
-                                            });
-                                    final String url = "faces/" + filename;
-                                    TransferObserver observer = mTransferUtility.upload(
-                                            "vision-by-passionate-people",     /* The bucket to upload to */
-                                            url,    /* The key for the uploaded object */
-                                            dest        /* The file where the data to upload exists */
-                                    );
-
-                                    observer.setTransferListener(new TransferListener() {
-                                        //
-                                        @Override
-                                        public void onStateChanged(int id, TransferState state) {
-                                            if (state.equals(TransferState.COMPLETED)) {
-                                                updateCustomer(faceId ,age, 1, url);
-                                            }
-                                            // do something
-                                        }
-
-                                        @Override
-                                        public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-                                            int percentage = (int) (bytesCurrent / bytesTotal * 100);
-                                            Log.d("this is progress", percentage + "");
-                                            //Display percentage transfered to user
-                                        }
-
-                                        @Override
-                                        public void onError(int id, Exception ex) {
-                                            Log.d("test", id + "");
-                                            // do something
-                                        }
-
-                                    });
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                } finally {
-                                    try {
-                                        if (out != null) {
-                                            out.close();
-                                        }
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-
-                            }
-//
-                        }
 //                        else {
 //                            int width = (int)face.getWidth();
 //                            offset = ((int)face.getWidth() - (int)face.getHeight()) / 2;
 //                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(top-offset, 0), left, (int)face.getWidth(), (int)face.getWidth(), matrix, true);
 //                        }
-                    }
+//                    }
 //
                 }
                 // The code below needs to run outside of synchronization, because this will allow
@@ -1478,8 +1348,148 @@ public class CameraSource {
         }
     }
 
+    private void getFaceInfo(Face face, Frame outputFrame, long time) {
+        int faceId = face.getId();
+        int w = outputFrame.getMetadata().getWidth();
+        int h = outputFrame.getMetadata().getHeight();
+//                        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+//
+        ByteBuffer byteBufferRaw = outputFrame.getGrayscaleImageData();
+        byte[] byteBuffer = byteBufferRaw.array();
+        YuvImage yuvimage = new YuvImage(byteBuffer, ImageFormat.NV21, w, h, null);
+
+        int left = (int) face.getPosition().x;
+        int top = (int) face.getPosition().y;
+        int right = (int) face.getWidth() + left;
+        int bottom = (int) face.getHeight() + top;
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        yuvimage.compressToJpeg(new Rect(0, 0, w, h), 100, baos);
+
+//                        yuvimage.compressToJpeg(new Rect(left, top, right, bottom), 100, baos);
+        byte[] jpegArray = baos.toByteArray();
+
+//                        Bitmap bitmap = BitmapFactory.decodeByteArray(jpegArray, 0, jpegArray.length);
+
+//                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                        yuvimage.compressToJpeg(new Rect(left, top, right, bottom), 100, baos);
+//                        byte[] jpegArray = baos.toByteArray();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(jpegArray, 0, jpegArray.length);
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapheight = bitmap.getHeight();
+        int faceWidth = (int) face.getWidth();
+        int faceHeight = (int) face.getHeight();
+//                        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, left, top, (int) face.getWidth(), (int) face.getHeight());
+        Matrix matrix = new Matrix();
+
+        matrix.postRotate(270);
+//                        int width;
+        Bitmap rotatedBitmap;
+//                        int offset = 0;
+        if (face.getHeight() < face.getWidth() && top > 0 && top < bitmap.getHeight() - face.getHeight() && left > 0 && left < bitmap.getWidth() - face.getHeight()) {
+//                            width = (int)face.getHeight();
+            int height = (int) face.getHeight();
+            int width = (int) face.getWidth();
+            int offset = ((int) face.getHeight() - (int) face.getWidth()) / 2;
+            if (left - offset > 0) {
+
+                int y = Math.max(top, 0);
+//                            int y = bitmap.getWidth();
+//                            int x =  Math.max(left-offset, 0);
+
+
+
+
+
+//                            rotatedBitmap = Bitmap.createBitmap(bitmap, y,x, height, width, matrix, true);
+//                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getWidth()-top-height),Math.max(0, bitmap.getHeight()-left-width), height, width, matrix, true);
+
+                rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getHeight() - height - top), Math.max(0, left - offset), height, height, matrix, true);
+
+//                            int width = Math.max((int)face.getHeight(), (int)face.getWidth());
+//                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, top, left, width, width, matrix, true);
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 240, 240, true);
+                int age  = mActivityInference.getAge(scaledBitmap);
+
+
+
+                Log.d("age log", age+"");
+
+                String filename = "face_" + time + ".jpg";
+                File sd = Environment.getExternalStorageDirectory();
+                File dest = new File(sd, filename);
+
+                Log.d("log", "got bitmap");
+                FileOutputStream out = null;
+                try {
+                    out = new FileOutputStream(dest);
+//                            out.write(jpegArray);
+                    scaledBitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+                    // PNG is a lossless format, the compression factor (100) is ignored
+
+
+                    MediaScannerConnection.scanFile(mContext,
+                            new String[]{dest.toString()}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> uri=" + uri);
+
+
+                                }
+                            });
+                    final String url = "faces/" + filename;
+                    TransferObserver observer = mTransferUtility.upload(
+                            "vision-by-passionate-people",     /* The bucket to upload to */
+                            url,    /* The key for the uploaded object */
+                            dest        /* The file where the data to upload exists */
+                    );
+
+                    observer.setTransferListener(new TransferListener() {
+                        //
+                        @Override
+                        public void onStateChanged(int id, TransferState state) {
+                            if (state.equals(TransferState.COMPLETED)) {
+                                updateCustomer(faceId ,age, 1, url);
+                            }
+                            // do something
+                        }
+
+                        @Override
+                        public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                            int percentage = (int) (bytesCurrent / bytesTotal * 100);
+                            Log.d("this is progress", percentage + "");
+                            //Display percentage transfered to user
+                        }
+
+                        @Override
+                        public void onError(int id, Exception ex) {
+                            Log.d("test", id + "");
+                            // do something
+                        }
+
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (out != null) {
+                            out.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+//
+        }
+    }
+
     private void updateCustomer(int faceId, int age, int gender, String url) {
         Customer customer = new Customer(age, 1, url);
+        String urlBase = "https://s3.ap-northeast-2.amazonaws.com/vision-by-passionate-people/";
         if(customers.containsKey(faceId)) {
             List<Customer> customerList = customers.get(faceId);
 
@@ -1490,12 +1500,13 @@ public class CameraSource {
                 for (Customer customer1 : customerList) {
                     ageAverage += customer1.getAge();
                     genderAverage += customer1.getGender();
-                    urls.add(customer1.getUrl());
+                    urls.add(urlBase + customer1.getUrl());
                 }
 
                 ageAverage /= 5;
                 genderAverage /= 5;
                 customers.remove(faceId);
+                customersTime.remove(faceId);
                 sendCustomerToServer(ageAverage, genderAverage,  urls);
 
             } else {
@@ -1517,11 +1528,12 @@ public class CameraSource {
 
     private void sendCustomerToServer(int age, int gender, List<String> url) {
         JSONObject userData = new JSONObject();
+//        JSONArray urlArray = new JSONArray();
         try {
-            userData.put("id", time);
+//            userData.put("id", time);
             userData.put("age", age);
             userData.put("gender", 1);
-            userData.put("url", url);
+            userData.put("url", new JSONArray(url));
             mSocket.emit("userData", userData);
         } catch (JSONException e) {
             // TODO Auto-generated catch block
