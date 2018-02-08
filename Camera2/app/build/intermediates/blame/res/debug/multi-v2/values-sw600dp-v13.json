@@ -4,7 +4,7 @@
             "outputFile": "/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/878a1198f0371f071ace7e8c24ae720b/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/Users/sanghwankim/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/f8f85ab8d27479d4fc0c6c3d1a8cffd6/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

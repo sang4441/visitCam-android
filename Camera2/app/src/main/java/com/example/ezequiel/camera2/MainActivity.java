@@ -3,6 +3,7 @@ package com.example.ezequiel.camera2;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,6 +32,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.example.ezequiel.camera2.others.Camera2Source;
 import com.example.ezequiel.camera2.others.FaceGraphic;
 import com.example.ezequiel.camera2.utils.Utils;
+import com.facebook.Profile;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.gms.common.ConnectionResult;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 200;
     private static final int REQUEST_STORAGE_PERMISSION = 201;
     private TextView cameraVersion;
-    private ImageView ivAutoFocus;
+    private ImageView ivAutoFocus, mViewAnalytics;
 
     // CAMERA VERSION ONE DECLARATIONS
     private CameraSource mCameraSource = null;
@@ -91,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (URISyntaxException e) {}
     }
 
+    private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,255 +115,28 @@ public class MainActivity extends AppCompatActivity {
         AmazonS3 s3 = new AmazonS3Client(credentialsProvider);
         transferUtility = new TransferUtility(s3, getApplicationContext());
 
-        takePictureButton = (Button) findViewById(R.id.btn_takepicture);
-        switchButton = (Button) findViewById(R.id.btn_switch);
-        videoButton = (Button) findViewById(R.id.btn_video);
+        mViewAnalytics = (ImageView)findViewById(R.id.view_analysis);
+        mViewAnalytics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AnalysisActivity.class));
+                finish();
+            }
+        });
+
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
-        cameraVersion = (TextView) findViewById(R.id.cameraVersion);
-        ivAutoFocus = (ImageView) findViewById(R.id.ivAutoFocus);
+//        ivAutoFocus = (ImageView) findViewById(R.id.ivAutoFocus);
+        userId = Profile.getCurrentProfile().getId();
+        requestPermissionThenOpenCamera();
 
-        if(checkGooglePlayAvailability()) {
-            requestPermissionThenOpenCamera();
-
-            switchButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(usingFrontCamera) {
-                        stopCameraSource();
-                        createCameraSourceBack();
-                        usingFrontCamera = false;
-                    } else {
-                        stopCameraSource();
-                        createCameraSourceFront();
-                        usingFrontCamera = true;
-                    }
-                }
-            });
-
-            takePictureButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    switchButton.setEnabled(false);
-                    videoButton.setEnabled(false);
-                    takePictureButton.setEnabled(false);
-                    if(useCamera2) {
-                        if(mCamera2Source != null)mCamera2Source.takePicture(camera2SourceShutterCallback, camera2SourcePictureCallback);
-                    } else {
-                        if(mCameraSource != null)mCameraSource.takePicture(cameraSourceShutterCallback, cameraSourcePictureCallback);
-                    }
-                }
-            });
-
-            videoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    switchButton.setEnabled(false);
-                    takePictureButton.setEnabled(false);
-                    videoButton.setEnabled(false);
-                    if(isRecordingVideo) {
-                        if(useCamera2) {
-                            if(mCamera2Source != null)mCamera2Source.stopVideo();
-                        } else {
-                            if(mCameraSource != null)mCameraSource.stopVideo();
-                        }
-                    } else {
-                        if(useCamera2){
-                            if(mCamera2Source != null)mCamera2Source.recordVideo(camera2SourceVideoStartCallback, camera2SourceVideoStopCallback, camera2SourceVideoErrorCallback);
-                        } else {
-                            if(mCameraSource != null)mCameraSource.recordVideo(cameraSourceVideoStartCallback, cameraSourceVideoStopCallback, cameraSourceVideoErrorCallback);
-                        }
-                    }
-                }
-            });
-
-            mPreview.setOnTouchListener(CameraPreviewTouchListener);
-        }
+//        mPreview.setOnTouchListener(CameraPreviewTouchListener);
     }
 
-    final CameraSource.ShutterCallback cameraSourceShutterCallback = new CameraSource.ShutterCallback() {@Override public void onShutter() {Log.d(TAG, "Shutter Callback!");}};
-    final CameraSource.PictureCallback cameraSourcePictureCallback = new CameraSource.PictureCallback() {
-        @Override
-        public void onPictureTaken(Bitmap picture) {
-            Log.d(TAG, "Taken picture is here!");
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    switchButton.setEnabled(true);
-                    videoButton.setEnabled(true);
-                    takePictureButton.setEnabled(true);
-                }
-            });
-            FileOutputStream out = null;
-            try {
-                out = new FileOutputStream(new File(Environment.getExternalStorageDirectory(), "/camera_picture.png"));
-                picture.compress(Bitmap.CompressFormat.JPEG, 95, out);
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (out != null) {
-                        out.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    };
-    final CameraSource.VideoStartCallback cameraSourceVideoStartCallback = new CameraSource.VideoStartCallback() {
-        @Override
-        public void onVideoStart() {
-            isRecordingVideo = true;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    videoButton.setEnabled(true);
-                    videoButton.setText(getString(R.string.stop_video));
-                }
-            });
-            Toast.makeText(context, "Video STARTED!", Toast.LENGTH_SHORT).show();
-        }
-    };
-    final CameraSource.VideoStopCallback cameraSourceVideoStopCallback = new CameraSource.VideoStopCallback() {
-        @Override
-        public void onVideoStop(String videoFile) {
-            isRecordingVideo = false;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    switchButton.setEnabled(true);
-                    takePictureButton.setEnabled(true);
-                    videoButton.setEnabled(true);
-                    videoButton.setText(getString(R.string.record_video));
-                }
-            });
-            Toast.makeText(context, "Video STOPPED!", Toast.LENGTH_SHORT).show();
-        }
-    };
-    final CameraSource.VideoErrorCallback cameraSourceVideoErrorCallback = new CameraSource.VideoErrorCallback() {
-        @Override
-        public void onVideoError(String error) {
-            isRecordingVideo = false;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    switchButton.setEnabled(true);
-                    takePictureButton.setEnabled(true);
-                    videoButton.setEnabled(true);
-                    videoButton.setText(getString(R.string.record_video));
-                }
-            });
-            Toast.makeText(context, "Video Error: "+error, Toast.LENGTH_LONG).show();
-        }
-    };
-    final Camera2Source.VideoStartCallback camera2SourceVideoStartCallback = new Camera2Source.VideoStartCallback() {
-        @Override
-        public void onVideoStart() {
-            isRecordingVideo = true;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    videoButton.setEnabled(true);
-                    videoButton.setText(getString(R.string.stop_video));
-                }
-            });
-            Toast.makeText(context, "Video STARTED!", Toast.LENGTH_SHORT).show();
-        }
-    };
-    final Camera2Source.VideoStopCallback camera2SourceVideoStopCallback = new Camera2Source.VideoStopCallback() {
-        @Override
-        public void onVideoStop(String videoFile) {
-            isRecordingVideo = false;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    switchButton.setEnabled(true);
-                    takePictureButton.setEnabled(true);
-                    videoButton.setEnabled(true);
-                    videoButton.setText(getString(R.string.record_video));
-                }
-            });
-            Toast.makeText(context, "Video STOPPED!", Toast.LENGTH_SHORT).show();
-        }
-    };
-    final Camera2Source.VideoErrorCallback camera2SourceVideoErrorCallback = new Camera2Source.VideoErrorCallback() {
-        @Override
-        public void onVideoError(String error) {
-            isRecordingVideo = false;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    switchButton.setEnabled(true);
-                    takePictureButton.setEnabled(true);
-                    videoButton.setEnabled(true);
-                    videoButton.setText(getString(R.string.record_video));
-                }
-            });
-            Toast.makeText(context, "Video Error: "+error, Toast.LENGTH_LONG).show();
-        }
-    };
-
-    final Camera2Source.ShutterCallback camera2SourceShutterCallback = new Camera2Source.ShutterCallback() {
-        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-        @Override
-        public void onShutter() {Log.d(TAG, "Shutter Callback for CAMERA2");}
-    };
-
-    final Camera2Source.PictureCallback camera2SourcePictureCallback = new Camera2Source.PictureCallback() {
-        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-        @Override
-        public void onPictureTaken(Image image) {
-            Log.d(TAG, "Taken picture is here!");
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    switchButton.setEnabled(true);
-                    videoButton.setEnabled(true);
-                    takePictureButton.setEnabled(true);
-                }
-            });
-            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-            byte[] bytes = new byte[buffer.capacity()];
-            buffer.get(bytes);
-            Bitmap picture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
-            FileOutputStream out = null;
-            try {
-                out = new FileOutputStream(new File(Environment.getExternalStorageDirectory(), "/camera2_picture.png"));
-                picture.compress(Bitmap.CompressFormat.JPEG, 95, out);
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (out != null) {
-                        out.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    };
-
-    private boolean checkGooglePlayAvailability() {
-        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context);
-        if(resultCode == ConnectionResult.SUCCESS) {
-            return true;
-        } else {
-            if(googleApiAvailability.isUserResolvableError(resultCode)) {
-                googleApiAvailability.getErrorDialog(MainActivity.this, resultCode, 2404).show();
-            }
-        }
-        return false;
-    }
 
     private void requestPermissionThenOpenCamera() {
         if(ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                useCamera2 = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
-                useCamera2 = false;
-//                createCameraSourceFront();
                 createCameraSourceBack();
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_STORAGE_PERMISSION);
@@ -369,48 +146,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void createCameraSourceFront() {
-        previewFaceDetector = new FaceDetector.Builder(context)
-                .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
-                .setLandmarkType(FaceDetector.ALL_LANDMARKS)
-                .setMode(FaceDetector.FAST_MODE)
-                .setProminentFaceOnly(true)
-                .setTrackingEnabled(true)
-                .build();
 
-        if(previewFaceDetector.isOperational()) {
-            previewFaceDetector.setProcessor(new MultiProcessor.Builder<>(new GraphicFaceTrackerFactory()).build());
-        } else {
-            Toast.makeText(context, "FACE DETECTION NOT AVAILABLE", Toast.LENGTH_SHORT).show();
-        }
-
-        if(useCamera2) {
-            mCamera2Source = new Camera2Source.Builder(context, previewFaceDetector)
-                    .setFocusMode(Camera2Source.CAMERA_AF_AUTO)
-                    .setFlashMode(Camera2Source.CAMERA_FLASH_AUTO)
-                    .setFacing(Camera2Source.CAMERA_FACING_FRONT)
-                    .build();
-
-            //IF CAMERA2 HARDWARE LEVEL IS LEGACY, CAMERA2 IS NOT NATIVE.
-            //WE WILL USE CAMERA1.
-            if(mCamera2Source.isCamera2Native()) {
-                startCameraSource();
-            } else {
-                useCamera2 = false;
-                if(usingFrontCamera)
-                    createCameraSourceFront();
-                else
-                    createCameraSourceBack();
-            }
-        } else {
-            mCameraSource = new CameraSource.Builder(context, previewFaceDetector, transferUtility, mSocket, activityInference)
-                    .setFacing(CameraSource.CAMERA_FACING_FRONT)
-                    .setRequestedFps(30.0f)
-                    .build();
-
-            startCameraSource();
-        }
-    }
 
     private void createCameraSourceBack() {
         previewFaceDetector = new FaceDetector.Builder(context)
@@ -427,51 +163,22 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(context, "FACE DETECTION NOT AVAILABLE", Toast.LENGTH_SHORT).show();
         }
 
-        if(useCamera2) {
-            mCamera2Source = new Camera2Source.Builder(context, previewFaceDetector)
-                    .setFocusMode(Camera2Source.CAMERA_AF_AUTO)
-                    .setFlashMode(Camera2Source.CAMERA_FLASH_AUTO)
-                    .setFacing(Camera2Source.CAMERA_FACING_BACK)
-                    .build();
 
-            //IF CAMERA2 HARDWARE LEVEL IS LEGACY, CAMERA2 IS NOT NATIVE.
-            //WE WILL USE CAMERA1.
-            if(mCamera2Source.isCamera2Native()) {
-                startCameraSource();
-            } else {
-                useCamera2 = false;
-                if(usingFrontCamera) createCameraSourceFront(); else createCameraSourceBack();
-            }
-        } else {
-            mCameraSource = new CameraSource.Builder(context, previewFaceDetector, transferUtility, mSocket, activityInference)
+        mCameraSource = new CameraSource.Builder(context, previewFaceDetector, transferUtility, mSocket, activityInference)
                     .setFacing(CameraSource.CAMERA_FACING_BACK)
                     .setRequestedFps(30.0f)
                     .build();
+        startCameraSource();
 
-            startCameraSource();
-        }
     }
 
     private void startCameraSource() {
-        if(useCamera2) {
-            if(mCamera2Source != null) {
-                cameraVersion.setText("Camera 2");
-                try {mPreview.start(mCamera2Source, mGraphicOverlay);
-                } catch (IOException e) {
-                    Log.e(TAG, "Unable to start camera source 2.", e);
-                    mCamera2Source.release();
-                    mCamera2Source = null;
-                }
-            }
-        } else {
-            if (mCameraSource != null) {
-                cameraVersion.setText("Camera 1");
-                try {mPreview.start(mCameraSource, mGraphicOverlay);
-                } catch (IOException e) {
-                    Log.e(TAG, "Unable to start camera source.", e);
-                    mCameraSource.release();
-                    mCameraSource = null;
-                }
+        if (mCameraSource != null) {
+            try {mPreview.start(mCameraSource, mGraphicOverlay);
+            } catch (IOException e) {
+                Log.e(TAG, "Unable to start camera source.", e);
+                mCameraSource.release();
+                mCameraSource = null;
             }
         }
     }
@@ -602,11 +309,7 @@ public class MainActivity extends AppCompatActivity {
         if(wasActivityResumed)
         	//If the CAMERA2 is paused then resumed, it won't start again unless creating the whole camera again.
         	if(useCamera2) {
-        		if(usingFrontCamera) {
-        			createCameraSourceFront();
-        		} else {
-        			createCameraSourceBack();
-        		}
+                createCameraSourceBack();
         	} else {
         		startCameraSource();
         	}

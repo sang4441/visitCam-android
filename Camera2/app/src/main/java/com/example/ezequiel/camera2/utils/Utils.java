@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class Utils {
 
+    public static String baseURL = "http://192.168.1.72:9000/";
+
     public static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }

@@ -1382,11 +1382,13 @@ public class CameraSource {
 //                        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, left, top, (int) face.getWidth(), (int) face.getHeight());
         Matrix matrix = new Matrix();
 
-        matrix.postRotate(270);
+        matrix.postRotate(0);
 //                        int width;
         Bitmap rotatedBitmap;
 //                        int offset = 0;
-        if (face.getHeight() < face.getWidth() && top > 0 && top < bitmap.getHeight() - face.getHeight() && left > 0 && left < bitmap.getWidth() - face.getHeight()) {
+//        if (face.getHeight() > face.getWidth() && top > 0 && top < bitmap.getHeight() - face.getHeight() && left > 0 && left < bitmap.getWidth() - face.getHeight()) {
+        if (faceHeight > faceWidth && top > 0 && top + faceHeight < bitmapheight && left > 0 && left + faceHeight < bitmapWidth) {
+
 //                            width = (int)face.getHeight();
             int height = (int) face.getHeight();
             int width = (int) face.getWidth();
@@ -1404,7 +1406,8 @@ public class CameraSource {
 //                            rotatedBitmap = Bitmap.createBitmap(bitmap, y,x, height, width, matrix, true);
 //                            rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getWidth()-top-height),Math.max(0, bitmap.getHeight()-left-width), height, width, matrix, true);
 
-                rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, bitmap.getHeight() - height - top), Math.max(0, left - offset), height, height, matrix, true);
+                rotatedBitmap = Bitmap.createBitmap(bitmap, Math.max(0, left), Math.max(0, top), faceHeight, faceHeight, matrix, true);
+//                rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, 300, 100, matrix, true);
 
 //                            int width = Math.max((int)face.getHeight(), (int)face.getWidth());
 //                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, top, left, width, width, matrix, true);

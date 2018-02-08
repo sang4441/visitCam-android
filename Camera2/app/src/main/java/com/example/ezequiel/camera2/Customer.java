@@ -1,17 +1,23 @@
 package com.example.ezequiel.camera2;
 
+import java.util.Date;
+import java.util.List;
+
 public class Customer {
 
     private int id;
     private int age;
     private int gender;
-    private String url;
+    private String dateEntered;
+    private List<String> images;
 
-    public Customer(int age, int gender, String url) {
-//        this.id = id;
+    public Customer(int id, int age, int gender, List<String> urls, String date) {
+        this.id = id;
         this.age = age;
         this.gender = gender;
-        this.url = url;
+        this.images = urls;
+        this.dateEntered = date;
+
     }
 
     public int getId() {
@@ -38,12 +44,28 @@ public class Customer {
         this.gender = gender;
     }
 
-    public String getUrl() {
-        return url;
+//    public String getUrl() {
+//        return url;
+//    }
+//
+//    public void setUrl(String url) {
+//        this.url = url;
+//    }
+//
+
+    public String getDateEntered() {
+        return dateEntered;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setDateEntered(String dateEntered) {
+        this.dateEntered = dateEntered;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 }
