@@ -6,12 +6,18 @@ buildscript {
         maven {
             url 'https://maven.google.com/'
             name 'Google'
+
         }
         google()
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0-alpha06'
 
+    apply plugin: 'java'
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        apply plugin: 'java'
+        sourceCompatibility = 1.7
+        targetCompatibility = 1.7
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -24,9 +30,8 @@ allprojects {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        maven { url 'https://jitpack.io' }
+
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}

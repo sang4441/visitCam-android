@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/sanghwankim/.android/build-cache/950be72a0683f40a64c9167e08c7ffee7249922a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="9bdfc3e83c6bc1f8bc5807cdaf7e94ac884a2a0d">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/pre-dexed/debug/classes_f9ba49188dcdac592b9433a36fab8cdfe292a87e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sanghwankim/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-kms/2.6.12/f1290864ef93131baaf504be04b86da4941acf21/aws-android-sdk-kms-2.6.12.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="f1290864ef93131baaf504be04b86da4941acf21">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/pre-dexed/debug/aws-android-sdk-kms-2.6.12_e5b9fdedadb0354247f2cc96b3b45a94362ab211.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sanghwankim/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-core/2.6.12/43ff15a74166275ca3e17136fb451c753aad2f9/aws-android-sdk-core-2.6.12.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="043ff15a74166275ca3e17136fb451c753aad2f9">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/pre-dexed/debug/aws-android-sdk-core-2.6.12_c5cab92329d92f6e143dc4e9ca4247a93e5d9249.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sanghwankim/.android/build-cache/bdd961db67143040d57cac7aed4dcdab6a0d1980/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="bcd0bcdef85b31a656af76e39c0c95ce70800772">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/pre-dexed/debug/classes_0493de1626fbd5f535b0c7e77d91b0c65c232803.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sanghwankim/.android/build-cache/e77b6043f491c67a46c33adaee66c23016b4e173/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="d7cc5473b9cf4ea159a263cd477fb3ecb2987b96">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/pre-dexed/debug/classes_2965070997f378a5e0c693360c1fc64a9174f681.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/pre-dexed/debug/gson-2.2.4_d0ce76b63ce905fbab3c5d385c8e1b8692010f19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sanghwankim/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.3/7d7f60c4783872861222166f6164215f8951c7b1/common-1.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="7d7f60c4783872861222166f6164215f8951c7b1">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/pre-dexed/debug/common-1.0.3_5c44144606ee1c61ed399acd9275866c2b516615.jar" />
+    </item>
+
+</items>

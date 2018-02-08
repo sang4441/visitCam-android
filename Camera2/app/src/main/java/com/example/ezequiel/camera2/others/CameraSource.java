@@ -1349,7 +1349,7 @@ public class CameraSource {
     }
 
     private void getFaceInfo(Face face, Frame outputFrame, long time) {
-        int faceId = face.getId();
+        final int faceId = face.getId();
         int w = outputFrame.getMetadata().getWidth();
         int h = outputFrame.getMetadata().getHeight();
 //                        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
@@ -1412,7 +1412,7 @@ public class CameraSource {
 //                            int width = Math.max((int)face.getHeight(), (int)face.getWidth());
 //                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, top, left, width, width, matrix, true);
                 Bitmap scaledBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 240, 240, true);
-                int age  = mActivityInference.getAge(scaledBitmap);
+                final int age  = mActivityInference.getAge(scaledBitmap);
 
 
 

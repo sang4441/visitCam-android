@@ -1,6 +1,7 @@
 package com.example.ezequiel.camera2;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,6 +14,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ezequiel.camera2.utils.Sharedpreference;
 import com.example.ezequiel.camera2.utils.Utils;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,16 +28,41 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import static android.R.attr.data;
+
 public class AnalysisActivity extends Activity {
 
     private String userId;
-
+    private List<Customer> customers;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_analysis);
+
+        PieChart chart = (PieChart) findViewById(R.id.chart);
+
+        List<Entry> entries = new ArrayList<Entry>();
+
+//        for (YourData data : dataObjects) {
+//
+//            // turn your data into Entry objects
+//            entries.add(new Entry(data.getValueX(), data.getValueY()));
+//        }
+
+        entries.add(new Entry(3, 5));
+        entries.add(new Entry(1, 5));
+        PieDataSet dataSet = new PieDataSet(entries, "Label"); // add entries to dataset
+        dataSet.setColor(Color.YELLOW);
+        dataSet.setValueTextColor(Color.BLACK); // styling, ...
+
+        PieData pieData = new PieData();
+        pieData.setDataSet(dataSet);
+        chart.setData(pieData);
+        chart.invalidate(); // refresh
+
 
         userId = Sharedpreference.getUserId(getApplicationContext());
-        List<Customer> customers = new ArrayList<>();
+        customers = new ArrayList<>();
 
 // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);

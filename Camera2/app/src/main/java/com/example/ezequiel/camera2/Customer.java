@@ -8,6 +8,9 @@ public class Customer {
     private int id;
     private int age;
     private int gender;
+
+
+    private String url;
     private String dateEntered;
     private List<String> images;
 
@@ -18,6 +21,13 @@ public class Customer {
         this.images = urls;
         this.dateEntered = date;
 
+    }
+
+    public Customer(int age, int gender, String url) {
+        this.id = id;
+        this.age = age;
+        this.gender = gender;
+        this.url = url;
     }
 
     public int getId() {
@@ -52,6 +62,14 @@ public class Customer {
 //        this.url = url;
 //    }
 //
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getDateEntered() {
         return dateEntered;
