@@ -56,12 +56,6 @@
         <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-1b75ce5a4416926cda4ca9526b649ba8d2fb7446.jar" />
     </item>
     <item
-        jar="/Users/sanghwankim/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.2.0/b8c0920fbe8225e30b8f378474528ca163c9c9e4/MPAndroidChart-v2.2.0.jar"
-        revision="27.0.2"
-        sha1="b8c0920fbe8225e30b8f378474528ca163c9c9e4">
-        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/MPAndroidChart-v2.2.0-bb7191e2ee295a7afb78b6fbf05e45328960bb87.jar" />
-    </item>
-    <item
         jar="/Users/sanghwankim/.android/build-cache/950be72a0683f40a64c9167e08c7ffee7249922a/output/jars/classes.jar"
         revision="27.0.2"
         sha1="9bdfc3e83c6bc1f8bc5807cdaf7e94ac884a2a0d">
@@ -78,6 +72,12 @@
         revision="27.0.2"
         sha1="ed6560f31a6a40b5965f5879d8f2eab1f68def05">
         <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-ab45d1ab6919d2803a712930259590e3c4d2d903.jar" />
+    </item>
+    <item
+        jar="/Users/sanghwankim/Library/Android/sdk/platforms/android-27/android.jar"
+        revision="27.0.2"
+        sha1="d02154a5733e96aa2be158f6c757a3ece55c62fa">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackRuntimeLibraries/debug/jars/8000/40/android-0711945c02b720278dd740fcc892879341ff5f29.jar" />
     </item>
     <item
         jar="/Users/sanghwankim/.android/build-cache/8bef83e90b57dc12eedb8fde64eac75ff30f5583/output/jars/classes.jar"
@@ -114,6 +114,12 @@
         revision="27.0.2"
         sha1="25c8cb628374f9a2d59ff9e1172753751e9a9f84">
         <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-f01262d85dea825c092b1d038eccc4556e7415b6.jar" />
+    </item>
+    <item
+        jar="/Users/sanghwankim/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.0.0/ff93baa2e2e6ca507fc6ec731f61751dd0d865e7/MPAndroidChart-v3.0.0.jar"
+        revision="27.0.2"
+        sha1="ff93baa2e2e6ca507fc6ec731f61751dd0d865e7">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/MPAndroidChart-v3.0.0-3aa7c57f127d7a4da8aab89514a45a6c269ecad0.jar" />
     </item>
     <item
         jar="/Users/sanghwankim/.android/build-cache/84bdfab2f38f52aaab6cf6033680acc9afbee71d/output/jars/classes.jar"
@@ -156,6 +162,12 @@
         revision="27.0.2"
         sha1="bcd0bcdef85b31a656af76e39c0c95ce70800772">
         <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-0493de1626fbd5f535b0c7e77d91b0c65c232803.jar" />
+    </item>
+    <item
+        jar="/Users/sanghwankim/Library/Android/sdk/platforms/android-27/optional/org.apache.http.legacy.jar"
+        revision="27.0.2"
+        sha1="bf28a3f9e860a334b96f23e5f1e60fe54e628293">
+        <dex dex="/Users/sanghwankim/workspace/vision/Camera2Vision/Camera2/app/build/intermediates/transforms/preJackRuntimeLibraries/debug/jars/8000/40/org.apache.http.legacy-fb3873ec6dd4fa53c3861ebea54220727404ba3b.jar" />
     </item>
     <item
         jar="/Users/sanghwankim/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-kms/2.6.12/f1290864ef93131baaf504be04b86da4941acf21/aws-android-sdk-kms-2.6.12.jar"

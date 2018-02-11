@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.2'
     defaultConfig {
         applicationId "com.example.ezequiel.camera2"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 27
 //        multiDexEnabled true
         jackOptions {
@@ -48,6 +48,6 @@ dependencies {
     compile 'com.facebook.android:facebook-login:[4,5)'
     compile 'com.android.volley:volley:1.1.0'
 
-    compile 'com.github.PhilJay:MPAndroidChart:v2.2.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
 
 }

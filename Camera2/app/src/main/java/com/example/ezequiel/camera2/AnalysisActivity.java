@@ -14,12 +14,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ezequiel.camera2.utils.Sharedpreference;
 import com.example.ezequiel.camera2.utils.Utils;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,26 +42,68 @@ public class AnalysisActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
 
-        PieChart chart = (PieChart) findViewById(R.id.chart);
-
-        List<Entry> entries = new ArrayList<Entry>();
-
-//        for (YourData data : dataObjects) {
+        PieChart pieChart = (PieChart) findViewById(R.id.chart);
+//        LineChart chart = (LineChart) findViewById(R.id.chart_line);
+//        // programmatically create a LineChart
+        List<Entry> entrie = new ArrayList<Entry>();
+////        entries.add(new Entry(0f, 10f));
+////        entries.add(new Entry(1f, 20f));
+////        entries.add(new Entry(2f, 30f));
+//        entries.add(new Entry(0, 1));
+//        entries.add(new Entry(1, 2));
+//        entries.add(new Entry(3, 3));
+//        entries.add(new Entry(4, 0));
 //
-//            // turn your data into Entry objects
-//            entries.add(new Entry(data.getValueX(), data.getValueY()));
-//        }
+        LineDataSet set = new LineDataSet(entrie, "Election Results");
+////
+////        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+////        dataSets.add(set);
+//
+//        LineData data = new LineData();
+//        data.addDataSet(set);
+//        chart.setData(data);
+//
+////        chart.setDescription("");
+//        chart.setNoDataText("No Chart Data"); // this is the top line
+//        chart.invalidate();
+////        chart.invalidate();
+//        chart.in.
 
-        entries.add(new Entry(3, 5));
-        entries.add(new Entry(1, 5));
-        PieDataSet dataSet = new PieDataSet(entries, "Label"); // add entries to dataset
+
+//        List<PieEntry> entries = new ArrayList<>();
+//
+//        entries.add(new PieEntry(18.5f, "Green"));
+//        entries.add(new PieEntry(26.7f, "Yellow"));
+//        entries.add(new PieEntry(24.0f, "Red"));
+//        entries.add(new PieEntry(30.8f, "Blue"));
+//
+//        PieDataSet set = new PieDataSet(entries, "Election Results");
+//        PieData data = new PieData(set);
+//        pieChart.setData(data);
+//        pieChart.invalidate(); // refresh
+
+        List<PieEntry> entries = new ArrayList<>();
+
+        entries.add(new PieEntry(18.5f, "Green"));
+        entries.add(new PieEntry(26.7f, "Yellow"));
+        entries.add(new PieEntry(24.0f, "Red"));
+        entries.add(new PieEntry(30.8f, "Blue"));
+
+
+        PieDataSet dataSet = new PieDataSet(entries, "test");
+        dataSet.addEntry(new PieEntry(30.8f, "Blue"));
+        dataSet.addEntry(new PieEntry(30.8f, "Blue"));
         dataSet.setColor(Color.YELLOW);
         dataSet.setValueTextColor(Color.BLACK); // styling, ...
 
         PieData pieData = new PieData();
         pieData.setDataSet(dataSet);
-        chart.setData(pieData);
-        chart.invalidate(); // refresh
+        pieChart.setData(pieData);
+        pieChart.invalidate(); // refresh
+
+
+
+
 
 
         userId = Sharedpreference.getUserId(getApplicationContext());
